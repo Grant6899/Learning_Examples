@@ -17,29 +17,31 @@ void partial_sum(int st, int ed, boost::uint64_t& total){
 
 int main() 
 { 
-  boost::posix_time::ptime start = boost::posix_time::microsec_clock::local_time(); 
+    boost::posix_time::ptime start = boost::posix_time::microsec_clock::local_time(); 
 
-  boost::uint64_t sum = 0; 
-  for (int i = 0; i < 1000000000; ++i) 
-    sum += i; 
+    boost::uint64_t sum = 0; 
+    for (int i = 0; i < 1000000000; ++i) 
+      sum += i; 
 
-  boost::posix_time::ptime end = boost::posix_time::microsec_clock::local_time(); 
-  std::cout << "Single thread execution time:" << end - start << std::endl; 
+    boost::posix_time::ptime end = boost::posix_time::microsec_clock::local_time(); 
+    std::cout << "Single thread execution time:" << end - start << std::endl; 
 
-  std::cout << "Single thread execution result:" << sum << std::endl; 
+    std::cout << "Single thread execution result:" << sum << std::endl; 
   
-  start = boost::posix_time::microsec_clock::local_time(); 
+    start = boost::posix_time::microsec_clock::local_time(); 
 
-  boost::uint64_t sum_1 = 0;
-  boost::uint64_t sum_2 = 0;
-  boost::thread t1(partial_sum, 0, 500000000, sum_1);
-  boost::thread t2(partial_sum, 500000000, 1000000000, sum_2);
-  boost::uint64_t sum_12 = sum_1 + sum_2;
+    boost::uint64_t sum_1 = 0;
+    boost::uint64_t sum_2 = 0;
+    boost::thread t1(partial_sum, 0, 500000000, boost::ref(sum_1));
+    boost::thread t2(partial_sum, 500000000, 1000000000, boost::ref(sum_2));
 
-  end = boost::posix_time::microsec_clock::local_time(); 
-  std::cout << "Multi-thread execution time:" << end - start << std::endl; 
+    t1.join();
+    t2.join();
 
-  std::cout << "Multi-thread execution result:" << sum_12 << std::endl; 
+    boost::uint64_t sum_12 = sum_1 + sum_2;
+    end = boost::posix_time::microsec_clock::local_time(); 
+    std::cout << "Multi-thread execution time:" << end - start << std::endl; 
+
+    std::cout << "Multi-thread execution result:" << sum_12 << std::endl; 
    
-
 } 
