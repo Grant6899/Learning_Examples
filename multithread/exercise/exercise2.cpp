@@ -24,14 +24,14 @@ int main()
     int gap = 1000000000 / max_thread_num;
 
     boost::posix_time::ptime start = boost::posix_time::microsec_clock::local_time(); 
-
-    for( int i=0; i<max_thread_num; ++i ){
-        vec_t[i] = boost::thread(partial_sum, 0, 500000000, boost::ref(vec_sum[i]));
-    }
     
-    for (int i=0; i<max_thread_num; ++i){
+    for( int i = 0, last_st = 0; i<max_thread_num; ++i, last_st += gap )
+        vec_t.push_back(boost::thread(partial_sum, last_st, last_st+gap, boost::ref(vec_sum[i])));
+    
+    
+    for (int i=0; i<max_thread_num; ++i)
         vec_t[i].join();
-    }
+    
 
     boost::uint64_t sum = 0;
     for (int i=0; i<max_thread_num; ++i)
