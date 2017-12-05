@@ -27,7 +27,7 @@ int main()
     boost::posix_time::ptime start = boost::posix_time::microsec_clock::local_time(); 
     
     for( int i = 0, last_st = 0; i<max_thread_num; ++i, last_st += gap )
-        vec_t[i] = boost::make_shared<boost::thread>(partial_sum, last_st, last_st+gap, boost::ref(vec_sum[i]));
+        vec_t.push_back( boost::make_shared<boost::thread>(partial_sum, last_st, last_st+gap, boost::ref(vec_sum[i])));
     
     for (int i=0; i<max_thread_num; ++i)
         vec_t[i]->join();
