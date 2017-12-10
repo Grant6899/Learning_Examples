@@ -1,23 +1,25 @@
 /*************************************************************************
-	> File Name: ex4.cpp
+	> File Name: test.cpp
 	> Author: Grant Liu
 	> Mail: ymliu6899@gmail.com
-	> Created Time: Sat Dec  9 20:47:47 2017
+	> Created Time: Sun Dec 10 11:57:31 2017
  ************************************************************************/
 
 #include<iostream>
-#include"pe.h"
+#include"Rational.h"
 
 using namespace std;
 
 int main(){
     
-    double ar[4] = {1.0, 2.0, 3.0, 4.0};
+    Rational r1(2,5);
+    Rational r2(-r1);
+    Rational r3;
+    r3 = 2.34;
     
-    SALES::Sales s1;
-    //SALES::setSales(s1, ar, 4);
-    SALES::setSales(s1);
-    SALES::showSales(s1);
+    cout<<r1<<endl;
+    cout<<r2<<endl;
+    cout<<r3<<endl;
 
     return 0;
 }

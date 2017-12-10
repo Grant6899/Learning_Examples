@@ -29,31 +29,28 @@ void SALES::setSales(SALES::Sales & s, const double ar[], int n){
 void SALES::setSales(SALES::Sales & s){
     double input;
     std::cout << "Enter a sales number:\n";
-    std::cin >> input;
-    int num = 0;
 
     s.average = 0;
     s.max = INT_MIN;
     s.min = INT_MAX;
-    while (cin && num < 3)
+    int num = 0; 
+    for (; num < SALES::QUARTERS; ++num)
     {
+        std::cin >> input;
         s.sales[num] = input;
         s.average += s.sales[num];
         s.max = s.sales[num] > s.max? s.sales[num] : s.max;
         s.min = s.sales[num] < s.min? s.sales[num] : s.min;
-        ++num;
         cout << "Enter next sales number (empty line to quit):\n";
-        cin.clear();
-        std::cin >> input;
     }
     s.average /= (num + 1);
     cout << "Bye\n";
 }
 
-void showSales(const SALES::Sales & s){
+void SALES::showSales(const SALES::Sales & s){
     std::cout << "Sales:\n";
     for (int i = 0; i < SALES::QUARTERS; ++i){
-        std::cout << "Quater "<<i<<" $"<<s.sales[i]<<std::endl;
+        std::cout << "Quater "<<i+1<<" $"<<s.sales[i]<<std::endl;
     }
     std::cout<<"Average: "<<s.average<<std::endl;
     std::cout<<"Max: "<<s.max<<std::endl;
