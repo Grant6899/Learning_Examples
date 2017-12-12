@@ -30,14 +30,22 @@ int main() {
 	cout << "logical operator test:\n";
 	cout << boolalpha << "r0 > r1: " << (r0 > r1) << endl;
 	cout << "-1 <= r2: " << (-1 <= r2) << endl;
-	cout << "r2 != r4 " << (r1 != r4) << endl;
-	cout << "r0 == 0 " << (r0 == 0) << endl;
+    cout << "r2 != r4: " << (r1 != r4) << endl;
+    cout << "r1 * r3 >= r2 + r4: " << (r1 * r3 >= r2 + r4) << endl;
 
 	// arithmetic test
 	cout << "arithmetic test:\n";
 	cout << "r0 + r1: " << (r0 + r1) << endl;
-	//cout << "-1 - r2: " << (-1 - r2) << endl;
-	//cout << "r2 * r4 " << (r2 * r4) << endl;
-	//cout << "3 / r1 " << (3 / r1) << endl;
+	cout << "-1 - r2: " << (-1 - r2) << endl;
+    cout << "r2 * r4: " << (r2 * r4) << endl;
+    cout << "3 / r1: " << (3 / r1) << endl;
+
+    // lvalue & rvalue test
+    Rational* rp = new Rational(3, 8);
+    Rational& refp = r1;
+    
+    cout << "*rp: " << *rp << endl;
+    cout << "refp: " << refp << endl;
+
 	return 0;
 }

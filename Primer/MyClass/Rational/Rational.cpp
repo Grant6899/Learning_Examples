@@ -80,7 +80,13 @@ double Float(Rational &r) {
 	return r.p_ / (double)r.q_;
 }
 
-ostream& operator<<(ostream &os, Rational &obj) {
+ostream& operator<<(ostream &os, Rational& obj) {
+	obj.Reduce();
+	os << obj.GetNumerator() << "/" << obj.GetDenominator();
+	return os;
+}
+
+ostream& operator<<(ostream &os, Rational&& obj) {
 	obj.Reduce();
 	os << obj.GetNumerator() << "/" << obj.GetDenominator();
 	return os;

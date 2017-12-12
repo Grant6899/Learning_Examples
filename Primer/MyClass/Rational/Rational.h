@@ -159,6 +159,7 @@ public:
 	friend double Float(Rational &r);
 
 	friend ostream& operator<<(ostream &os, Rational & obj);
+	friend ostream& operator<<(ostream &os, Rational && obj);
 
 };
 
