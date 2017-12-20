@@ -92,46 +92,50 @@ ostream& operator<<(ostream &os, Rational&& obj) {
 	return os;
 }
 
-int operator==(double ra, Rational& rhs) {
-	return (rhs == ra);
-};
-
-int operator!=(double ra, Rational& rhs) {
-	return !(rhs == ra);
-};
-
-int operator>(double ra, Rational& rhs) {
-	Rational temp(ra);
-	return (ra > rhs);
-};
-
-int operator>=(double ra, Rational& rhs) {
-	return (ra == rhs || ra > rhs);
-};
-
-int operator<(double ra, Rational& rhs) {
-	Rational temp(ra);
-	return (temp < rhs);
-};
-
-int operator<=(double ra, Rational& rhs) {
-	return (ra == rhs || ra < rhs);
-};
-
-Rational operator+(double ra, Rational rhs) {
-	return (ra + rhs);
+int operator==(const Rational& lhs, const Rational& rhs) {
+	return ( lhs.GetNumerator() * rhs.GetDenominator() == rhs.GetNumerator() * lhs.GetDenominator() );
 }
 
-Rational operator-(double ra, Rational rhs) {
-	Rational temp(ra);
-	return (temp - rhs);
+int operator!=(const Rational& lhs, const Rational& rhs) {
+	return !(lhs == rhs);
 }
 
-Rational operator*(double ra, Rational rhs) {
-	return (ra * rhs);
+int operator>(const Rational& lhs, const Rational& rhs) {
+	return ( lhs.GetNumerator() * rhs.GetDenominator() > rhs.GetNumerator() * lhs.GetDenominator() );
 }
 
- Rational operator/(double ra, Rational rhs) {
-	Rational temp(ra);
-	return (temp / rhs);
+int operator>=(const Rational& lhs, const Rational& rhs) {
+	return (lhs == rhs || lhs > rhs);
+}
+
+int operator<(const Rational& lhs, const Rational& rhs) {
+	return ( lhs.GetNumerator() * rhs.GetDenominator() < rhs.GetNumerator() * lhs.GetDenominator() );
+}
+
+int operator<=(const Rational& lhs, const Rational& rhs) {
+	return (lhs == rhs || lhs < rhs);
+};
+
+Rational operator+(const Rational& lhs, const Rational& rhs) {
+	Rational temp(lhs.GetNumerator() * rhs.GetDenominator() + rhs.GetNumerator() * lhs.GetDenominator(), lhs.GetDenominator() * rhs.GetDenominator());
+    return temp;
+}
+
+Rational operator-(const Rational& lhs, const Rational& rhs) {
+	Rational temp(lhs.GetNumerator() * rhs.GetDenominator() - rhs.GetNumerator() * lhs.GetDenominator(), lhs.GetDenominator() * rhs.GetDenominator());
+    return temp;
+}
+
+Rational operator*(const Rational& lhs, const Rational& rhs) {
+	Rational temp(lhs.GetNumerator() * rhs.GetNumerator(), lhs.GetDenominator() * rhs.GetDenominator());
+    return temp;
+}
+
+Rational operator/(const Rational& lhs, const Rational& rhs) {
+    if(rhs.GetNumerator() == 0){
+        cout << "Error: Cannot be divided by zero!\n";
+        exit(1);
+    }
+    Rational temp(lhs.GetNumerator() * rhs.GetDenominator(), lhs.GetDenominator() * rhs.GetNumerator());
+    return temp;
 }

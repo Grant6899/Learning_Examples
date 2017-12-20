@@ -17,6 +17,7 @@ int main() {
 	Rational r2 = -r1;
 	Rational r3 = 2.34;
 	Rational r4 = 0.4;
+    Rational r5 = 15;
 
 	// Ctor test
 	cout << "ctor test:\n";
@@ -25,6 +26,7 @@ int main() {
 	cout << "r2: " << r2 << endl;
 	cout << "r3: " << r3 << endl;
 	cout << "r4: " << r4 << endl;
+    cout << "r5: " << r5 << endl;
 
 	// logical operator test
 	cout << "logical operator test:\n";
@@ -47,5 +49,8 @@ int main() {
     cout << "*rp: " << *rp << endl;
     cout << "refp: " << refp << endl;
 
+    // const object return test
+    r1 * r2 = r3;
+    
 	return 0;
 }

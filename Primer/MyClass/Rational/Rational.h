@@ -49,112 +49,7 @@ public:
 		return temp;
 	}
 
-	// overloading ==
-	int operator==(const Rational& rhs) const {
-		return (p_ * rhs.GetDenominator() == q_ * rhs.GetNumerator());
-	}
-
-	int operator==(double ra) const {
-		Rational temp(ra);
-		return operator==(temp);
-	}
-
-	// overloading !=
-	int operator!=(const Rational& rhs) const {
-		return !operator==(rhs);
-	}
-
-	int operator!=(double ra) const {
-		Rational temp(ra);
-		return !operator==(temp);
-	}
-
-	// overloading >
-	int operator>(const Rational& rhs) const {
-		return (p_ * rhs.GetDenominator() > q_ * rhs.GetNumerator());
-	}
-
-	int operator>(double ra) const {
-		Rational temp(ra);
-		return operator>(temp);
-	}
-
-	// overloading >=
-	int operator>=(const Rational& rhs) {
-		return (operator==(rhs) || operator>(rhs));
-	}
-
-	int operator>=(double ra) {
-		return (operator==(ra) || operator>(ra));
-	}
-
-	// overloading <
-	int operator<(const Rational& rhs) {
-		return (p_ * rhs.GetDenominator() < q_ * rhs.GetNumerator());
-	}
-
-	int operator<(double ra) {
-		Rational temp(ra);
-		return operator<(temp);
-	}
-
-	// overloading <=
-	int operator<=(const Rational& rhs) {
-		return (operator==(rhs) || operator<(rhs));
-	}
-
-	int operator<=(double ra) {
-		return (operator==(ra) || operator<(ra));
-	}
-
-	// overloading +
-	Rational operator+(const Rational& rhs) const {
-		Rational temp(p_*rhs.GetDenominator() + rhs.GetNumerator() * q_, rhs.GetDenominator() * q_);
-		return temp;
-	}
-
-	Rational operator+(double ra) const {
-		Rational temp(ra);
-		return operator+(temp);
-	}
-
-	// overloading -
-	Rational operator-(const Rational& rhs) const {
-		Rational temp(p_*rhs.GetDenominator() - rhs.GetNumerator() * q_, rhs.GetDenominator() * q_);
-		return temp;
-	}
-
-	Rational operator-(double ra) const {
-		Rational temp(ra);
-		return operator-(temp);
-	}
-
-	// overloading *
-	Rational operator*(const Rational& rhs) const {
-		Rational temp(p_ * rhs.GetNumerator(), rhs.GetDenominator() * q_);
-		return temp;
-	}
-
-	Rational operator*(double ra) const {
-		Rational temp(ra);
-		return operator*(temp);
-	}
-
-	// overloading /
-	Rational operator/(const Rational& rhs) const {
-		if (rhs.GetNumerator() == 0) {
-			cout << "Error: Cannot be divided by zero!\n";
-			exit(1);
-		}
-		Rational temp(p_*rhs.GetDenominator(), rhs.GetNumerator() * q_);
-		return temp;
-	}
-
-	Rational operator/(double ra) const {
-		Rational temp(ra);
-		return operator/(temp);
-	}
-
+	
 	// Convert a rational to double by force
 	friend double Float(Rational &r);
 
@@ -165,24 +60,24 @@ public:
 
 
 // overloading binary operators
-int operator==(double ra, Rational& rhs);
+int operator==(const Rational& lhs, const Rational& rhs);
 
-int operator!=(double ra, Rational& rhs);
+int operator!=(const Rational& lhs, const Rational& rhs);
 
-int operator>(double ra, Rational& rhs);
+int operator>(const Rational& lhs, const Rational& rhs);
 
-int operator>=(double ra, Rational& rhs);
+int operator>=(const Rational& lhs, const Rational& rhs);
 
-int operator<(double ra, Rational& rhs);
+int operator<(const Rational& lhs, const Rational& rhs);
 
-int operator<=(double ra, Rational& rhs);
+int operator<=(const Rational& lhs, const Rational& rhs);
 
-Rational operator+(double ra, Rational rhs);
+Rational operator+(const Rational& lhs, const Rational& rhs);
 
-Rational operator-(double ra, Rational rhs);
+Rational operator-(const Rational& lhs, const Rational& rhs);
 
-Rational operator*(double ra, Rational rhs);
+Rational operator*(const Rational& lhs, const Rational& rhs);
 
-Rational operator/(double ra, Rational rhs);
+Rational operator/(const Rational& lhs, const Rational& rhs);
 
 #endif
