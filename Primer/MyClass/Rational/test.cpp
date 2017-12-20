@@ -18,6 +18,7 @@ int main() {
 	Rational r3 = 2.34;
 	Rational r4 = 0.4;
     Rational r5 = 15;
+    Rational r6(5, 8);
 
 	// Ctor test
 	cout << "ctor test:\n";
@@ -52,5 +53,10 @@ int main() {
     // const object return test
     r1 * r2 = r3;
     
+    // Explicit type conversion
+    cout << "Type conversion test:\n";
+    auto d6 = static_cast<double>(r6);
+    cout << d6 << endl;
+
 	return 0;
 }

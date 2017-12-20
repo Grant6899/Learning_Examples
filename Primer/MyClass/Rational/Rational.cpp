@@ -76,10 +76,6 @@ Rational& Rational::operator=(double rhs) {
 	return *this;
 }
 
-double Float(Rational &r) {
-	return r.p_ / (double)r.q_;
-}
-
 ostream& operator<<(ostream &os, Rational& obj) {
 	obj.Reduce();
 	os << obj.GetNumerator() << "/" << obj.GetDenominator();

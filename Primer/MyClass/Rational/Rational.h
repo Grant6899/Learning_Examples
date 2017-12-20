@@ -50,8 +50,10 @@ public:
 	}
 
 	
-	// Convert a rational to double by force
-	friend double Float(Rational &r);
+	// Convert a rational to double explicitly
+    explicit operator double(){
+        return p_ / ((double) q_);
+    };
 
 	friend ostream& operator<<(ostream &os, Rational & obj);
 	friend ostream& operator<<(ostream &os, Rational && obj);
