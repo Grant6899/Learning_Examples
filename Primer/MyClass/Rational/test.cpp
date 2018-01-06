@@ -40,7 +40,7 @@ int main() {
 	cout << "arithmetic test:\n";
 	cout << "r0 + r1: " << (r0 + r1) << endl;
 	cout << "-1 - r2: " << (-1 - r2) << endl;
-    cout << "r2 * r4: " << (r2 * r4) << endl;
+    cout << "r4 * r2: " << (r4 * r2) << endl;
     cout << "3 / r1: " << (3 / r1) << endl;
 
     // lvalue & rvalue test
